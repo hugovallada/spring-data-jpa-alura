@@ -1,7 +1,20 @@
 package com.github.hugovallada.springdata.repositories;
 
 import com.github.hugovallada.springdata.entities.Funcionario;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
+
 public interface FuncionarioRepository extends CrudRepository<Funcionario, Long> {
+
+    List<Funcionario> findByNome(String nome);
+
+    @Query("SELECT f FROM Funcionario f WHERE f.nome = :nome AND f.salario >= :salario AND f.dataContratacao = :data")
+    List<Funcionario> findNomeSalarioMaiorDataContratacao(String nome, BigDecimal salario, LocalDate data);
+
+    @Query(value = "Select * FROM Funcionarios f WHERE f.data_contratacao >= :data", nativeQuery = true)
+    List<Funcionario> findDataContratacaoMaior(LocalDate data);
 }

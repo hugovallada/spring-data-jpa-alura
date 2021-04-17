@@ -16,6 +16,13 @@ public class Cargo {
     @OneToMany(mappedBy = "cargo")
     private List<Funcionario> funcionarios;
 
+    public Cargo(Long id) {
+        this.id = id;
+    }
+
+    public Cargo() {
+    }
+
     public Long getId() {
         return id;
     }

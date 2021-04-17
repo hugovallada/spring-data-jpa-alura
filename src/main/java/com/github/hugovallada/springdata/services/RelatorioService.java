@@ -5,23 +5,25 @@ import com.github.hugovallada.springdata.repositories.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class FuncionarioService {
+public class RelatorioService {
 
     private final FuncionarioRepository funcionarioRepository;
 
     @Autowired
-    public FuncionarioService(FuncionarioRepository funcionarioRepository) {
+    public RelatorioService(FuncionarioRepository funcionarioRepository) {
         this.funcionarioRepository = funcionarioRepository;
     }
 
-    public Funcionario cadastrar(Funcionario funcionario){
-        return funcionarioRepository.save(funcionario);
+    public List<Funcionario> listarTodosPorNome(String nome){
+        return funcionarioRepository.findByNome(nome);
     }
 
-    public List<Funcionario> listarTodos(){
-        return (List<Funcionario>) funcionarioRepository.findAll();
+    public List<Funcionario> buscarPoeNomeSalarioMaiorData(String nome, BigDecimal salario, LocalDate data){
+        return funcionarioRepository.findNomeSalarioMaiorDataContratacao(nome, salario, data);
     }
 }

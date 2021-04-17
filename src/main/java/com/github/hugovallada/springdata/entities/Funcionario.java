@@ -25,7 +25,13 @@ public class Funcionario {
     @JoinColumn(name = "cargo_id")
     private Cargo cargo;
 
-    @ManyToMany
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "funcionarios_unidades", joinColumns = {
+            @JoinColumn(name = "fk_funcionario")
+    }, inverseJoinColumns = {
+            @JoinColumn(name = "fk_unidade")
+    })
     private List<UnidadeDeTrabalho> unidades;
 
     public Long getId() {

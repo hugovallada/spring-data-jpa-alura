@@ -15,8 +15,15 @@ public class UnidadeDeTrabalho {
 
     private String endereco;
 
-    @ManyToMany(mappedBy = "unidades")
+    @ManyToMany(mappedBy = "unidades", fetch = FetchType.EAGER)
     private List<Funcionario> funcionarios;
+
+    public UnidadeDeTrabalho(Long id) {
+        this.id = id;
+    }
+
+    public UnidadeDeTrabalho() {
+    }
 
     public Long getId() {
         return id;
