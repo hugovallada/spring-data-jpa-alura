@@ -4,6 +4,8 @@ import com.github.hugovallada.springdata.entities.Funcionario;
 import com.github.hugovallada.springdata.services.FuncionarioService;
 import com.github.hugovallada.springdata.services.RelatorioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,8 +33,8 @@ public class FuncionarioController {
     }
 
     @GetMapping
-    public List<Funcionario> buscarTodos(){
-        return  funcionarioService.listarTodos();
+    public Page<Funcionario> buscarTodos(Pageable paginacao){
+        return  funcionarioService.listarTodos(paginacao);
     }
 
     @GetMapping("/{nome}")

@@ -3,6 +3,8 @@ package com.github.hugovallada.springdata.services;
 import com.github.hugovallada.springdata.entities.Funcionario;
 import com.github.hugovallada.springdata.repositories.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +23,7 @@ public class FuncionarioService {
         return funcionarioRepository.save(funcionario);
     }
 
-    public List<Funcionario> listarTodos(){
-        return (List<Funcionario>) funcionarioRepository.findAll();
+    public Page<Funcionario> listarTodos(Pageable paginacao){
+        return funcionarioRepository.findAll(paginacao);
     }
 }
