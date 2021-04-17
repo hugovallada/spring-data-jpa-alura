@@ -1,6 +1,7 @@
 package com.github.hugovallada.springdata.repositories;
 
 import com.github.hugovallada.springdata.entities.Funcionario;
+import com.github.hugovallada.springdata.entities.FuncionarioProjecao;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -18,4 +19,7 @@ public interface FuncionarioRepository extends PagingAndSortingRepository<Funcio
 
     @Query(value = "Select * FROM Funcionarios f WHERE f.data_contratacao >= :data", nativeQuery = true)
     List<Funcionario> findDataContratacaoMaior(LocalDate data);
+
+    @Query(value = "SELECT f.id, f.nome, f.salario FROM funcionarios f", nativeQuery = true)
+    List<FuncionarioProjecao> findFuncionSalario();
 }

@@ -1,6 +1,7 @@
 package com.github.hugovallada.springdata.controllers;
 
 import com.github.hugovallada.springdata.entities.Funcionario;
+import com.github.hugovallada.springdata.entities.FuncionarioProjecao;
 import com.github.hugovallada.springdata.services.FuncionarioService;
 import com.github.hugovallada.springdata.services.RelatorioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,11 @@ public class FuncionarioController {
             ){
 
         return relatorioService.buscarPoeNomeSalarioMaiorData(nome, new BigDecimal(salario), LocalDate.parse(data));
+    }
+
+    @GetMapping("/salario")
+    public List<FuncionarioProjecao> buscarPorSalario(){
+        return funcionarioService.buscarSalario();
     }
 
 }
