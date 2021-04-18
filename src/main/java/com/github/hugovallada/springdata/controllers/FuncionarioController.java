@@ -58,5 +58,5 @@ public class FuncionarioController {
         return funcionarioService.buscarSalario();
     }
 
-}
+
 

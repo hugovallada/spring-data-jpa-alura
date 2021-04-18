@@ -2,6 +2,7 @@ package com.github.hugovallada.springdata.repositories;
 
 import com.github.hugovallada.springdata.entities.Funcionario;
 import com.github.hugovallada.springdata.entities.FuncionarioProjecao;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -10,7 +11,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface FuncionarioRepository extends PagingAndSortingRepository<Funcionario, Long> {
+public interface FuncionarioRepository extends PagingAndSortingRepository<Funcionario, Long> , JpaSpecificationExecutor<Funcionario> {
 
     List<Funcionario> findByNome(String nome);
 
