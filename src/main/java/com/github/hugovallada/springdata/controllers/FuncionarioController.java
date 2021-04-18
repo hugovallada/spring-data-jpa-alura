@@ -29,17 +29,17 @@ public class FuncionarioController {
     }
 
     @PostMapping
-    public Funcionario cadastrar(@RequestBody Funcionario funcionario){
+    public Funcionario cadastrar(@RequestBody Funcionario funcionario) {
         return funcionarioService.cadastrar(funcionario);
     }
 
     @GetMapping
-    public Page<Funcionario> buscarTodos(Pageable paginacao){
-        return  funcionarioService.listarTodos(paginacao);
+    public Page<Funcionario> buscarTodos(Pageable paginacao) {
+        return funcionarioService.listarTodos(paginacao);
     }
 
     @GetMapping("/{nome}")
-    public List<Funcionario> buscarPorNome(@PathVariable String nome){
+    public List<Funcionario> buscarPorNome(@PathVariable String nome) {
         return relatorioService.listarTodosPorNome(nome);
     }
 
@@ -48,15 +48,16 @@ public class FuncionarioController {
             @PathVariable String nome,
             @PathVariable String salario,
             @PathVariable String data
-            ){
+    ) {
 
         return relatorioService.buscarPoeNomeSalarioMaiorData(nome, new BigDecimal(salario), LocalDate.parse(data));
     }
 
     @GetMapping("/salario")
-    public List<FuncionarioProjecao> buscarPorSalario(){
+    public List<FuncionarioProjecao> buscarPorSalario() {
         return funcionarioService.buscarSalario();
     }
+}gi
 
 
 
