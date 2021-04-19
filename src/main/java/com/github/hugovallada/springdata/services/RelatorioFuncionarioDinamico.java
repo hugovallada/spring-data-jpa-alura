@@ -37,4 +37,13 @@ public class RelatorioFuncionarioDinamico {
     public List<Funcionario> consultaPorCpf(String cpf) {
         return funcionarioRepository.findAll(Specification.where(SpecificationFuncionario.cpf(cpf)));
     }
+
+    public List<Funcionario> consultaDinamica(String nome, BigDecimal salario, LocalDate data, String cpf){
+        return funcionarioRepository.findAll(
+                Specification.where(SpecificationFuncionario.nome(nome))
+                .or(SpecificationFuncionario.salario(salario))
+                .or(SpecificationFuncionario.contratacao(data))
+                .or(SpecificationFuncionario.cpf(cpf))
+        );
+    }
 }
